@@ -1,0 +1,83 @@
+# 🚀 QUICK START - Chrome Extension
+
+## ✅ Prerequisites
+- ✅ Flask server is running at http://127.0.0.1:5000
+- ✅ Extension files are in: `c:\Users\dipro\scrapin_data\chrome-extension\`
+
+## 📌 3 Simple Steps to Install
+
+### Step 1: Open Chrome Extensions
+```
+Type in Chrome address bar: chrome://extensions/
+```
+
+### Step 2: Enable Developer Mode
+```
+Toggle "Developer mode" ON (top-right corner)
+```
+
+### Step 3: Load Extension
+```
+1. Click "Load unpacked" button
+2. Navigate to: c:\Users\dipro\scrapin_data\chrome-extension\
+3. Click "Select Folder"
+```
+
+## ✨ Done! 
+
+Look for the **Lead Scraper** extension in your Chrome toolbar.
+
+---
+
+## 🎯 Test It Now
+
+1. Visit: **https://github.com**
+2. Click the **Lead Scraper icon** in Chrome toolbar
+3. See the scraped data appear
+4. Click **"Save Lead"**
+5. Visit **http://localhost:5000/dashboard** to see your saved lead!
+
+---
+
+## 💡 What You'll See in the Extension Popup
+
+```
+🔍 Lead Scraper
+
+URL: https://github.com
+Title: GitHub – Change is constant...
+Description: Join the world's most widely adopted...
+
+Contact Info:
+📄 Contact page found
+
+Social Media:
+🐦 @github • 💼 LinkedIn • 📷 Instagram
+
+Language: en • Logo found
+
+[💾 Save Lead]
+```
+
+---
+
+## 🔧 Quick Troubleshooting
+
+**Can't find the extension icon?**
+- Click the puzzle piece 🧩 icon in Chrome
+- Find "Lead Scraper"
+- Click the pin 📌 icon
+
+**"Save Lead" button not working?**
+- Make sure Flask server is running
+- Visit http://localhost:5000 to verify
+
+**No data showing?**
+- Try different websites (GitHub, Stack Overflow, Python.org)
+- Some websites have limited metadata
+
+---
+
+## 📚 Full Documentation
+
+See `CHROME_EXTENSION_INSTALL.md` for detailed instructions and troubleshooting.
