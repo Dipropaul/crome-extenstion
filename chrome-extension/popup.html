@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            width: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+        }
+        h2 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .info p {
+            margin: 8px 0;
+            word-wrap: break-word;
+        }
+        .label {
+            font-weight: 600;
+            color: #555;
+        }
+        .value {
+            color: #333;
+            margin-top: 3px;
+        }
+        .empty {
+            color: #999;
+            font-style: italic;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            text-align: center;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .section {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>🔍 Lead Scraper</h2>
+    
+    <div class="info">
+        <div class="section">
+            <p><span class="label">URL:</span></p>
+            <div class="value" id="url">Loading...</div>
+        </div>
+        
+        <div class="section">
+            <p><span class="label">Title:</span></p>
+            <div class="value" id="title">Loading...</div>
+        </div>
+        
+        <div class="section">
+            <p><span class="label">Description:</span></p>
+            <div class="value" id="description">Loading...</div>
+        </div>
+        
+        <div class="section" id="contactSection" style="display: none;">
+            <p><span class="label">Contact Info:</span></p>
+            <div class="value" id="contact"></div>
+        </div>
+        
+        <div class="section" id="socialSection" style="display: none;">
+            <p><span class="label">Social Media:</span></p>
+            <div class="value" id="social"></div>
+        </div>
+        
+        <div id="extraInfo" style="font-size: 11px; color: #666;"></div>
+    </div>
+    
+    <button id="saveBtn">💾 Save Lead</button>
+    
+    <div id="status" style="display: none;"></div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

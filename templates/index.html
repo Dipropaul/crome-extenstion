@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Lead Scraper{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom: 20px;">Welcome to Lead Scraper</h2>
+    <p style="margin-bottom: 20px; color: #666;">
+        A simple tool to scrape website information and manage leads.
+    </p>
+    
+    <div style="display: flex; gap: 15px;">
+        <a href="/add-lead" style="text-decoration: none;">
+            <button class="btn">➕ Add New Lead</button>
+        </a>
+        <a href="/dashboard" style="text-decoration: none;">
+            <button class="btn btn-secondary">📊 View Dashboard</button>
+        </a>
+    </div>
+    
+    <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee;">
+        <h3 style="margin-bottom: 15px;">Features:</h3>
+        <ul style="list-style-position: inside; color: #666;">
+            <li>Scrape website title and meta description from any URL</li>
+            <li>Store leads in a local database</li>
+            <li>View all leads in a clean dashboard</li>
+            <li>Chrome extension for quick lead capture</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

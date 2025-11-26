@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Lead Scraper{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+        <h2>📊 Leads Dashboard</h2>
+        <a href="/add-lead" style="text-decoration: none;">
+            <button class="btn">➕ Add Lead</button>
+        </a>
+    </div>
+    
+    {% if leads %}
+    <p style="color: #666; margin-bottom: 20px;">Total leads: {{ leads|length }}</p>
+    
+    <div style="overflow-x: auto;">
+        {% for lead in leads %}
+        <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: start; gap: 15px; margin-bottom: 15px;">
+                {% if lead.logo_url or lead.favicon_url %}
+                <img src="{{ lead.logo_url or lead.favicon_url }}" alt="Logo" 
+                     style="width: 48px; height: 48px; object-fit: contain; border-radius: 4px; border: 1px solid #eee;"
+                     onerror="this.style.display='none'">
+                {% endif %}
+                <div style="flex: 1;">
+                    <h3 style="margin: 0 0 5px 0; font-size: 18px;">{{ lead.company }}</h3>
+                    <a href="{{ lead.url }}" target="_blank" style="color: #3498db; text-decoration: none; font-size: 14px;">
+                        {{ lead.url }}
+                    </a>
+                </div>
+                <span style="color: #666; font-size: 12px; white-space: nowrap;">
+                    {{ lead.created_at.split(' ')[0] if ' ' in lead.created_at else lead.created_at }}
+                </span>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <strong style="color: #555;">Title:</strong> 
+                <span style="color: #333;">{{ lead.title }}</span>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <strong style="color: #555;">Description:</strong> 
+                <span style="color: #666;">{{ lead.description }}</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; padding: 15px; background: #f8f9fa; border-radius: 4px;">
+                {% if lead.email %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">📧 Email:</strong><br>
+                    <a href="mailto:{{ lead.email }}" style="color: #3498db; font-size: 14px;">{{ lead.email }}</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.phone %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">📞 Phone:</strong><br>
+                    <a href="tel:{{ lead.phone }}" style="color: #3498db; font-size: 14px;">{{ lead.phone }}</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.contact_page %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">📄 Contact:</strong><br>
+                    <a href="{{ lead.contact_page }}" target="_blank" style="color: #3498db; font-size: 14px;">Contact Page</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.twitter_handle %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">🐦 Twitter:</strong><br>
+                    <a href="https://twitter.com/{{ lead.twitter_handle }}" target="_blank" style="color: #3498db; font-size: 14px;">@{{ lead.twitter_handle }}</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.linkedin_url %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">💼 LinkedIn:</strong><br>
+                    <a href="{{ lead.linkedin_url }}" target="_blank" style="color: #3498db; font-size: 14px;">LinkedIn Profile</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.facebook_url %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">📘 Facebook:</strong><br>
+                    <a href="{{ lead.facebook_url }}" target="_blank" style="color: #3498db; font-size: 14px;">Facebook Page</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.instagram_url %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">📷 Instagram:</strong><br>
+                    <a href="{{ lead.instagram_url }}" target="_blank" style="color: #3498db; font-size: 14px;">Instagram Profile</a>
+                </div>
+                {% endif %}
+                
+                {% if lead.industry_keywords %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">🏷️ Keywords:</strong><br>
+                    <span style="font-size: 12px; color: #666;">{{ lead.industry_keywords[:50] }}{% if lead.industry_keywords|length > 50 %}...{% endif %}</span>
+                </div>
+                {% endif %}
+                
+                {% if lead.language %}
+                <div>
+                    <strong style="font-size: 12px; color: #555;">🌐 Language:</strong><br>
+                    <span style="font-size: 14px; color: #666;">{{ lead.language }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 40px; color: #666;">
+        <p style="font-size: 48px; margin-bottom: 15px;">📭</p>
+        <p style="font-size: 18px; margin-bottom: 10px;">No leads yet</p>
+        <p style="margin-bottom: 20px;">Start by adding your first lead!</p>
+        <a href="/add-lead" style="text-decoration: none;">
+            <button class="btn">Add Your First Lead</button>
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

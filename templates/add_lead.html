@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Add Lead - Lead Scraper{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom: 20px;">Add New Lead</h2>
+    
+    {% if error %}
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    {% if success %}
+    <div class="alert alert-success">
+        ✅ Lead added successfully!
+    </div>
+    
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+        <h3 style="margin-bottom: 15px;">Scraped Data:</h3>
+        
+        {% if lead.logo_url or lead.favicon_url %}
+        <div style="margin-bottom: 15px;">
+            <img src="{{ lead.logo_url or lead.favicon_url }}" alt="Logo" 
+                 style="max-width: 120px; max-height: 60px; object-fit: contain; border: 1px solid #dee2e6; padding: 5px; border-radius: 4px;"
+                 onerror="this.style.display='none'">
+        </div>
+        {% endif %}
+        
+        <p><strong>Company:</strong> {{ lead.company }}</p>
+        <p><strong>URL:</strong> <a href="{{ lead.url }}" target="_blank">{{ lead.url }}</a></p>
+        <p><strong>Title:</strong> {{ lead.title }}</p>
+        <p><strong>Description:</strong> {{ lead.description }}</p>
+        
+        {% if lead.email %}
+        <p><strong>📧 Email:</strong> <a href="mailto:{{ lead.email }}">{{ lead.email }}</a></p>
+        {% endif %}
+        
+        {% if lead.phone %}
+        <p><strong>📞 Phone:</strong> <a href="tel:{{ lead.phone }}">{{ lead.phone }}</a></p>
+        {% endif %}
+        
+        {% if lead.contact_page %}
+        <p><strong>📄 Contact Page:</strong> <a href="{{ lead.contact_page }}" target="_blank">{{ lead.contact_page }}</a></p>
+        {% endif %}
+        
+        {% if lead.twitter_handle or lead.linkedin_url or lead.facebook_url or lead.instagram_url %}
+        <div style="margin-top: 15px;">
+            <strong>Social Media:</strong>
+            <div style="margin-top: 5px;">
+                {% if lead.twitter_handle %}
+                <a href="https://twitter.com/{{ lead.twitter_handle }}" target="_blank" style="margin-right: 10px;">🐦 Twitter</a>
+                {% endif %}
+                {% if lead.linkedin_url %}
+                <a href="{{ lead.linkedin_url }}" target="_blank" style="margin-right: 10px;">💼 LinkedIn</a>
+                {% endif %}
+                {% if lead.facebook_url %}
+                <a href="{{ lead.facebook_url }}" target="_blank" style="margin-right: 10px;">📘 Facebook</a>
+                {% endif %}
+                {% if lead.instagram_url %}
+                <a href="{{ lead.instagram_url }}" target="_blank" style="margin-right: 10px;">📷 Instagram</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if lead.industry_keywords %}
+        <p><strong>🏷️ Keywords:</strong> {{ lead.industry_keywords }}</p>
+        {% endif %}
+        
+        {% if lead.language %}
+        <p><strong>🌐 Language:</strong> {{ lead.language }}</p>
+        {% endif %}
+    </div>
+    
+    <div style="display: flex; gap: 10px;">
+        <a href="/dashboard" style="text-decoration: none;">
+            <button class="btn">View Dashboard</button>
+        </a>
+        <a href="/add-lead" style="text-decoration: none;">
+            <button class="btn btn-secondary">Add Another</button>
+        </a>
+    </div>
+    {% else %}
+    <form method="POST" style="margin-top: 20px;">
+        <div style="margin-bottom: 20px;">
+            <label for="url" style="display: block; margin-bottom: 8px; font-weight: 500;">
+                Website URL
+            </label>
+            <input 
+                type="text" 
+                id="url" 
+                name="url" 
+                placeholder="https://example.com" 
+                required
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;"
+            >
+            <small style="color: #666; display: block; margin-top: 5px;">
+                Enter the full URL of the website you want to scrape
+            </small>
+        </div>
+        
+        <button type="submit" class="btn">🔍 Scrape & Save</button>
+    </form>
+    {% endif %}
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    <h3 style="margin-bottom: 15px;">ℹ️ How it works</h3>
+    <ol style="margin-left: 20px; color: #666;">
+        <li>Enter a website URL</li>
+        <li>We'll scrape the page title and meta description</li>
+        <li>The data is automatically saved to your local database</li>
+        <li>View all leads in the dashboard</li>
+    </ol>
+</div>
+{% endblock %}
